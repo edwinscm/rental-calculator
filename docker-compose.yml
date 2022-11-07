@@ -1,0 +1,38 @@
+version: "3"
+
+services:
+  front-end:
+    container_name: fe
+    build: 
+      context: ./front-end
+      dockerfile: ./Dockerfile.development
+    volumes:
+      - "./front-end:/app"
+      - "/app/node_modules"
+    ports:
+      - "3000:3000"
+    
+  back-end:
+    container_name: be
+    build: 
+      context: ./back-end
+      dockerfile: ./Dockerfile.development
+    env_file: ./back-end/.env.development.local
+    volumes:
+      - "./back-end:/app"
+      - "/app/node_modules"
+    ports:
+      - "4000:4000"
+
+  database:
+    container_name: db
+    image: postgres
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=rental_calculator
+    volumes:
+      - ./database/sql:/docker-entrypoint-initdb.d
+      - ./database/postgresql/data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
