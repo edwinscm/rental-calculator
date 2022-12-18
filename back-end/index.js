@@ -1,5 +1,5 @@
 var app = require("./app");
-var environment = require("./setup/environment");
+var environment = require("./environment");
 
 app.listen(environment.express.port, environment.express.host, (error) => {
   if (error) {

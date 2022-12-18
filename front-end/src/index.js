@@ -2,13 +2,13 @@
 import ReactDOM from "react-dom/client";
 // MUI
 import { ThemeProvider } from "@mui/material/styles";
-import theme from "./setup/theme";
+import theme from "./style/theme";
 // React Router
 import { BrowserRouter } from "react-router-dom";
 // CSS
-import "./index.css";
+import "./style/index.css";
 // Components
-import App from "./App";
+import App from "./components/app/App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 

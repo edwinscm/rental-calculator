@@ -4,7 +4,7 @@ import { useContext } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 // Context
-import AuthContext from "../../setup/auth/auth.context";
+import AuthContext from "../../contexts/AuthenticationContext";
 
 export default function Account() {
   let { onLogout } = useContext(AuthContext);
