@@ -1,31 +1,31 @@
 version: "3"
 
 services:
-  front-end:
-    container_name: fe
+  client:
+    container_name: client
     build: 
-      context: ./front-end
+      context: ./client
       dockerfile: ./Dockerfile.development
     volumes:
-      - "./front-end:/app"
+      - "./client:/app"
       - "/app/node_modules"
     ports:
       - "3000:3000"
     
-  back-end:
-    container_name: be
+  server:
+    container_name: server
     build: 
-      context: ./back-end
+      context: ./server
       dockerfile: ./Dockerfile.development
-    env_file: ./back-end/.env.development.local
+    env_file: ./server/.env.development.local
     volumes:
-      - "./back-end:/app"
+      - "./server:/app"
       - "/app/node_modules"
     ports:
       - "4000:4000"
 
   database:
-    container_name: db
+    container_name: database
     image: postgres
     environment:
       - POSTGRES_USER=user
