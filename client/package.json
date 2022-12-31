@@ -1,5 +1,5 @@
 {
-  "name": "@rental-calculator/front-end",
+  "name": "@rental-calculator/client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
