@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const database = require("../database-configuration/database-connection");
+const database = require("../postgresql/index");
 
 router.get("/rental-reports", async (req, res) => {
   try {
