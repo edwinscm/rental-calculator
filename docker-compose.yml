@@ -5,7 +5,7 @@ services:
     container_name: client
     build: 
       context: ./client
-      dockerfile: ./dockerfile.development
+      dockerfile: ./Dockerfile.development
     volumes:
       - "./client:/app"
       - "/app/node_modules"
@@ -16,7 +16,7 @@ services:
     container_name: server
     build: 
       context: ./server
-      dockerfile: ./dockerfile.development
+      dockerfile: ./Dockerfile.development
     env_file: ./server/.env.development.local
     volumes:
       - "./server:/app"

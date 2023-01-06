@@ -1,4 +1,5 @@
 const path = require("path");
+const Dotenv = require("dotenv-webpack");
 
 const isDevelopment = process.env.NODE_ENV !== "production";
 
@@ -39,4 +40,5 @@ module.exports = {
     port: 3000,
     historyApiFallback: true,
   },
+  plugins: [new Dotenv()],
 };
