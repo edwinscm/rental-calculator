@@ -1,1 +1,1 @@
-# Rental Calculator
+# Rental Calculator app
