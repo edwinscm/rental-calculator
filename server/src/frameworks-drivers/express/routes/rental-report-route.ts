@@ -1,18 +1,16 @@
-const router = require("express").Router();
-const database = require("../../postgresql/index");
-// import { getRentalReportList } from "../../../interface-adapters/controllers/rental-report.controller";
+import express from "express";
+import * as database from "../../postgresql/index.js";
+import { getRentalReportList } from "../../../interface-adapters/controllers/rental-report-controller.js";
 
-// router.get("/rental-reports", getRentalReportList);
+const router = express.Router();
 
-router.get("/rental-reports", async (req, res) => {
-  try {
-    const sqlQuery = `SELECT * FROM rental_reports`;
-    const { rows } = await database.query(sqlQuery);
-    res.status(201).json(rows);
-  } catch (error) {
-    res.status(401).json(error);
-  }
-});
+router.get("/rental-reports", getRentalReportList);
+
+// router.get("/rental-reports/:id", getUserRentalReportList);
+// router.get("/rental-report/:id", getRentalReportDetail);
+// router.post("/rental-report/create", createRentalReport);
+// router.delete("/rental-report/:id/delete", deleteRentalReport);
+// router.patch("/rental-report/:id/patch", patchRentalReport);
 
 router.get("/rental-reports/:user_id", async (req, res) => {
   try {
@@ -191,4 +189,4 @@ router.patch("/rental-report/patch/:rental_report_uuid", async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

@@ -1,5 +1,7 @@
 import express from "express";
 import cors from "cors";
+import authenticationRoute from "./routes/authentication-route.js";
+import rentalReportRoute from "./routes/rental-report-route.js";
 
 const app = express();
 
@@ -11,7 +13,7 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
-app.use("/api", require("./routes/authentication-route"));
-app.use("/api", require("./routes/rental-report-route"));
+app.use("/api", authenticationRoute);
+app.use("/api", rentalReportRoute);
 
 export default app;

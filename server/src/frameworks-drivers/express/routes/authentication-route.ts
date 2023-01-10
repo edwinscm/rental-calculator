@@ -1,7 +1,9 @@
-const router = require("express").Router();
-const database = require("../../postgresql/index");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
+import express from "express";
+import * as database from "../../postgresql/index.js";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+
+const router = express.Router();
 
 router.post("/user/sign-up", async (req, res) => {
   try {
@@ -41,4 +43,4 @@ router.post("/user/sign-in", async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

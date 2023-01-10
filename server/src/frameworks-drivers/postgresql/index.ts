@@ -1,5 +1,7 @@
-const { Pool } = require("pg");
-import environment from "../../environment";
+import pkg from "pg";
+import environment from "../../environment.js";
+
+const { Pool } = pkg;
 
 const pool = new Pool({
   host: environment.pg.host,
@@ -9,6 +11,6 @@ const pool = new Pool({
   password: environment.pg.password,
 });
 
-export function query(text: any, params: any, callback: any) {
+export function query(text: any, params?: any, callback?: any) {
   return pool.query(text, params, callback);
 }
