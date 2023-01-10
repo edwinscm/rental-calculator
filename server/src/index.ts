@@ -1,7 +1,5 @@
-import * as dotenv from "dotenv";
-dotenv.config({ path: __dirname + "/.env.development.local" });
-import app from "./frameworks-drivers/express/app";
-import environment from "./environment";
+import app from "./frameworks-drivers/express/app.js";
+import environment from "./environment.js";
 
 app.listen(
   Number(environment.express.port),
