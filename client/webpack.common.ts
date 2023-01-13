@@ -1,6 +1,6 @@
 import Dotenv from "dotenv-webpack";
-import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import webpack from "webpack";
+import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import path from "path";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import CopyPlugin from "copy-webpack-plugin";
