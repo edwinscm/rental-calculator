@@ -13,7 +13,7 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
-app.use("/api", authenticationRoute);
-app.use("/api", rentalReportRoute);
+app.use(authenticationRoute);
+app.use(rentalReportRoute);
 
 export default app;
