@@ -14,7 +14,7 @@ interface Props {
 function GoogleGeocodingAndMap({ fullAddress }: Props) {
   const [coordinates, setCoordinates] = useState({ lat: 0, lng: 0 });
 
-  const googleApiKey = environment.reactAppGoogleApiKey;
+  const googleApiKey = environment.googleApiKey;
   Geocode.setApiKey(googleApiKey);
   Geocode.setLanguage("en");
   Geocode.setRegion("en");
