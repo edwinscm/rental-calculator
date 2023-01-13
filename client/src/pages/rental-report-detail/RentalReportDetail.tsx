@@ -15,7 +15,13 @@ import SquareFootOutlinedIcon from "@mui/icons-material/SquareFootOutlined";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 // ChartJS
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import {
+  Chart as ChartJS,
+  ArcElement,
+  Tooltip,
+  Legend,
+  LinearScale,
+} from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 // Components
 import GoogleGeocodingAndMap from "./components/GoogleGeocodingAndMap";
@@ -65,7 +71,7 @@ export default function RentalReportDetail() {
     fetchData();
   }, [rental_report_uuid]);
 
-  ChartJS.register(ArcElement, Tooltip, Legend);
+  ChartJS.register(ArcElement, Tooltip, Legend, LinearScale);
 
   const incomeData = {
     labels: ["Rent"],
