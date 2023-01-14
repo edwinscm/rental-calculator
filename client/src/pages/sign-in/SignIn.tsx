@@ -23,7 +23,11 @@ export default function SignIn() {
   return (
     <Box sx={{ display: "flex", justifyContent: "center" }}>
       <Container
-        sx={{ maxWidth: "314px", boxSizing: "content-box" }}
+        sx={{
+          maxWidth: "314px",
+          boxSizing: "content-box",
+          paddingTop: "10rem",
+        }}
         maxWidth={false}
       >
         {/* Sign in header */}

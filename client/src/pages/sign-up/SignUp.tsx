@@ -27,7 +27,11 @@ export default function SignUp() {
   return (
     <Box sx={{ display: "flex", justifyContent: "center" }}>
       <Container
-        sx={{ maxWidth: "314px", boxSizing: "content-box" }}
+        sx={{
+          maxWidth: "314px",
+          boxSizing: "content-box",
+          paddingTop: "10rem",
+        }}
         maxWidth={false}
       >
         {/* Sign up header */}
