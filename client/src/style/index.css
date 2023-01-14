@@ -1,3 +1,3 @@
-    html, height, body, #root, .MuiBox-root {
-        background-color: #ECF1F3;
+    body{
+        background-color: #ecf1f3 !important;
     }
