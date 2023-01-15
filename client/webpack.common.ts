@@ -1,6 +1,5 @@
 import Dotenv from "dotenv-webpack";
 import webpack from "webpack";
-import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import path from "path";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import CopyPlugin from "copy-webpack-plugin";
@@ -14,7 +13,6 @@ const commonConfig: webpack.Configuration = {
   },
   plugins: [
     new Dotenv(),
-    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       publicPath: "/",
       template: "./public/index.html",
