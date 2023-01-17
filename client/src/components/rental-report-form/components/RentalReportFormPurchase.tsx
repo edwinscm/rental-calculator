@@ -1,17 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 // MUI Components
+import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import InputAdornment from "@mui/material/InputAdornment";
+import Link from "@mui/material/Link";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
+import HelpIcon from "@mui/icons-material/Help";
 // React Hook Form
 import { Controller } from "react-hook-form";
+import AlertDialog from "../../alert-dialog/AlertDialog";
 
 interface Props {
   control: any;
 }
 
 export default function EditRentalReportFormPurchase({ control }: Props) {
+  const dialogText = {
+    dialogTitle: `Calculating closing costs`,
+    dialogContent: `1.5% of the purchase price is a good number to begin with.`,
+    dialogButton1: `Close`,
+  };
+
+  const [open, setOpen] = useState(false);
+
   return (
     <>
       {/* Purchase */}
@@ -83,6 +95,46 @@ export default function EditRentalReportFormPurchase({ control }: Props) {
           rules={{ required: "Purchase closing costs required" }}
         />
       </Grid>
+      <Grid item xs={12} md={6}>
+        <aside>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              fontSize: "0.875rem",
+              color: "#858d94",
+              marginBottom: "0.25rem",
+            }}
+          >
+            <HelpIcon fontSize="inherit" />{" "}
+            <Box
+              sx={{
+                marginLeft: "0.25rem",
+              }}
+            >
+              HELP
+            </Box>
+          </Box>
+          <Link
+            sx={{ cursor: "pointer" }}
+            underline="none"
+            onClick={() => {
+              setOpen(true);
+            }}
+          >
+            Calculating closing costs
+          </Link>
+        </aside>
+      </Grid>
+
+      {/* Alert dialog */}
+      <AlertDialog
+        open={open}
+        setOpen={setOpen}
+        dialogTitle={dialogText.dialogTitle}
+        dialogContent={dialogText.dialogContent}
+        dialogButton1={dialogText.dialogButton1}
+      />
     </>
   );
 }
