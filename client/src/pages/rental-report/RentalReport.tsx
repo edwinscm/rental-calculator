@@ -13,7 +13,8 @@ export default function RentalReport() {
   const dialogText = {
     dialogTitle: `Delete Rental Report`,
     dialogContent: `Are you sure you want to delete this rental report?`,
-    dialogButton: `Delete`,
+    dialogButton1: `Delete`,
+    dialogButton2: `Cancel`,
   };
   const columns = [
     { field: "street_address", headerName: "Street Address", width: 210 },
@@ -178,7 +179,8 @@ export default function RentalReport() {
         setOpen={setOpen}
         dialogTitle={dialogText.dialogTitle}
         dialogContent={dialogText.dialogContent}
-        dialogButton={dialogText.dialogButton}
+        dialogButton1={dialogText.dialogButton1}
+        dialogButton2={dialogText.dialogButton2}
         triggerParentFunction={deleteRentalReport}
       />
     </div>

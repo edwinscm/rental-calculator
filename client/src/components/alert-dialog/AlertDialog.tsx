@@ -11,8 +11,9 @@ export interface Props {
   setOpen: Function;
   dialogTitle: string;
   dialogContent: string;
-  dialogButton: string;
-  triggerParentFunction: Function;
+  dialogButton1: string;
+  dialogButton2?: string;
+  triggerParentFunction?: Function;
 }
 
 export default function AlertDialog({
@@ -20,7 +21,8 @@ export default function AlertDialog({
   setOpen,
   dialogTitle,
   dialogContent,
-  dialogButton,
+  dialogButton1,
+  dialogButton2,
   triggerParentFunction,
 }: Props) {
   function handleCancel() {
@@ -31,7 +33,6 @@ export default function AlertDialog({
     setOpen(false);
     triggerParentFunction();
   }
-
   return (
     <Dialog
       open={open}
@@ -48,9 +49,11 @@ export default function AlertDialog({
       </DialogContent>
       {/* Dialog Actions */}
       <DialogActions>
-        <Button onClick={handleCancel}>Cancel</Button>
-        <Button onClick={handleClose} autoFocus>
-          {dialogButton}
+        {dialogButton2 && (
+          <Button onClick={handleCancel}>{dialogButton2}</Button>
+        )}
+        <Button variant="contained" onClick={handleClose}>
+          {dialogButton1}
         </Button>
       </DialogActions>
     </Dialog>
