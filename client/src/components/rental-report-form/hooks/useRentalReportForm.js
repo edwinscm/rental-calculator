@@ -20,13 +20,15 @@ export default function useRentalReportForm() {
   let navigate = useNavigate();
 
   useEffect(() => {
-    async function fetchData() {
-      const response = await rentalReportService.getRentalReport(
-        rental_report_uuid
-      );
-      reset(response);
+    if (location.pathname !== "/new-rental-report") {
+      async function fetchData() {
+        const response = await rentalReportService.getRentalReport(
+          rental_report_uuid
+        );
+        reset(response);
+      }
+      fetchData();
     }
-    fetchData();
   }, [rental_report_uuid, reset]);
 
   function getGrossPotentialIncome(rentalReportFormData) {
