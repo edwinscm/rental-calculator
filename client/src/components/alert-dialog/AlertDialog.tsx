@@ -49,12 +49,14 @@ export default function AlertDialog({
       </DialogContent>
       {/* Dialog Actions */}
       <DialogActions>
-        {dialogButton2 && (
-          <Button onClick={handleCancel}>{dialogButton2}</Button>
-        )}
         <Button variant="contained" onClick={handleClose}>
           {dialogButton1}
         </Button>
+        {dialogButton2 && (
+          <Button variant="outlined" onClick={handleCancel}>
+            {dialogButton2}
+          </Button>
+        )}
       </DialogActions>
     </Dialog>
   );
