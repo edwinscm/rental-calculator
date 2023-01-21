@@ -1,21 +1,29 @@
+// React
 import React, { useState, useEffect, useContext } from "react";
+// React router dom
 import { useNavigate } from "react-router-dom";
-import { DataGrid } from "@mui/x-data-grid";
+// MUI material
 import Button from "@mui/material/Button";
+// MUI icons
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
+// MUI data grid
+import { DataGrid } from "@mui/x-data-grid";
+// Components
 import AlertDialog from "../../components/alert-dialog/AlertDialog";
+// Services
 import * as rentalReportService from "../../services/rental-report.service";
+// Context
 import AuthContext from "../../contexts/AuthenticationContext";
 
 export default function RentalReport() {
-  const dialogText = {
-    dialogTitle: `Delete Rental Report`,
-    dialogContent: `Are you sure you want to delete this rental report?`,
-    dialogButton1: `Delete`,
-    dialogButton2: `Cancel`,
-  };
+  ///////////////
+  // Variables //
+  ///////////////
+  const navigate = useNavigate();
+  let { ls }: any = useContext(AuthContext);
+  const userId = ls.get("userId");
   const columns = [
     { field: "street_address", headerName: "Street Address", width: 210 },
     { field: "city", headerName: "City", width: 140 },
@@ -58,15 +66,20 @@ export default function RentalReport() {
       renderCell: renderDeleteButton,
     },
   ];
-  const navigate = useNavigate();
-  let { ls }: any = useContext(AuthContext);
-  const userId = ls.get("userId");
+  const dialogText = {
+    dialogTitle: `Delete Rental Report`,
+    dialogContent: `Are you sure you want to delete this rental report?`,
+    dialogButton1: `Delete`,
+    dialogButton2: `Cancel`,
+  };
 
+  ///////////
+  // Hooks //
+  ///////////
   const [rentalReports, setRentalReports] = useState([]);
   const [refreshKey, setRefreshKey] = useState(0);
   const [open, setOpen] = useState(false);
   const [params, setParams] = useState(null);
-
   useEffect(() => {
     const fetchData = async () => {
       const response = await rentalReportService.getUserRentalReportsList(
@@ -77,6 +90,10 @@ export default function RentalReport() {
     fetchData();
   }, [refreshKey]);
 
+  /**
+   * Render edit button
+   * @returns
+   */
   function renderEditButton() {
     return (
       <>
@@ -100,6 +117,10 @@ export default function RentalReport() {
     );
   }
 
+  /**
+   * Render delete button
+   * @returns
+   */
   function renderDeleteButton() {
     return (
       <>
@@ -122,6 +143,11 @@ export default function RentalReport() {
     );
   }
 
+  /**
+   * Handle one cell click
+   * @param {any} params
+   * @returns
+   */
   async function handleOnCellClick(params: any) {
     setParams(params);
     if (params.field === "edit") {
@@ -135,7 +161,11 @@ export default function RentalReport() {
     navigate(`/rental-report/${params.row.rental_report_uuid}`);
   }
 
-  async function deleteRentalReport(params: any) {
+  /**
+   * Delete rental report
+   * @param {any} params
+   */
+  async function deleteRentalReport() {
     await rentalReportService.deleteRentalReport(params.row.rental_report_uuid);
     // Refresh the effect by incrementing 1
     setRefreshKey((oldKey) => oldKey + 1);
@@ -144,6 +174,7 @@ export default function RentalReport() {
   return (
     <div style={{ height: 400, width: "100%" }}>
       <h1>Rental Reports List</h1>
+
       {/* New Rental Report Button */}
       <Button
         variant="outlined"
