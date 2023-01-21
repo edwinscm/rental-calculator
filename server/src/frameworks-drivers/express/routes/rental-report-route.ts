@@ -1,17 +1,21 @@
 import express from "express";
 import * as database from "../../postgresql/index.js";
-import { getRentalReportList } from "../../../interface-adapters/controllers/rental-report-controller.js";
+import {
+  getRentalReportList,
+  createRentalReport,
+} from "../../../interface-adapters/controllers/rental-report-controller.js";
 
 const router = express.Router();
 
+///////////////////////
+// With Clean Archi. //
+///////////////////////
 router.get("/rental-reports", getRentalReportList);
+router.post("/rental-report/create", createRentalReport);
 
-// router.get("/rental-reports/:id", getUserRentalReportList);
-// router.get("/rental-report/:id", getRentalReportDetail);
-// router.post("/rental-report/create", createRentalReport);
-// router.delete("/rental-report/:id/delete", deleteRentalReport);
-// router.patch("/rental-report/:id/patch", patchRentalReport);
-
+//////////////////////////
+// Without Clean Archi. //
+//////////////////////////
 router.get("/rental-reports/:user_id", async (req, res) => {
   try {
     const sqlQuery = `SELECT * FROM rental_reports WHERE user_id = '${req.params.user_id}'`;
@@ -28,100 +32,6 @@ router.get("/rental-report/:rental_report_uuid", async (req, res) => {
     const { rows } = await database.query(sqlQuery);
     const rental_report = rows[0];
     res.status(201).json(rental_report);
-  } catch (error) {
-    console.error(error);
-  }
-});
-
-router.post("/rental-report/create", async (req, res) => {
-  try {
-    const sqlQuery = `
-    INSERT INTO 
-    rental_reports (
-      rental_report_uuid,
-      street_address,
-      city,
-      state,
-      zip_code,
-      bedrooms,
-      bathrooms,
-      square_feet,
-      year_built,
-      description,
-      purchase_price,
-      purchase_closing_costs,
-      down_payment,
-      interest_rate,
-      points_charged,
-      loan_term,
-      gross_monthly_income,
-      property_taxes,
-      insurance,
-      water_sewer,
-      electricity,
-      gas,
-      garbage,
-      hoa_fees,
-      management_fees,
-      repairs_maintenance,
-      capital_expenditures,
-      vacancy,
-      monthly_income,
-      operating_expenses,
-      monthly_expenses,
-      cashflow,
-      noi,
-      coc_roi,
-      purchase_cap_rate,
-      total_cost_of_project,
-      loan_amount,
-      loan_fees,
-      monthly_mortgage_payment,
-      user_id
-    ) VALUES (
-      '${req.body.rental_report_uuid}',
-      '${req.body.street_address}',
-      '${req.body.city}',
-      '${req.body.state}',
-      ${req.body.zip_code},
-      ${req.body.bedrooms},
-      ${req.body.bathrooms},
-      ${req.body.square_feet},
-      ${req.body.year_built},
-      '${req.body.description}',
-      ${req.body.purchase_price},
-      ${req.body.purchase_closing_costs},
-      ${req.body.down_payment},
-      ${req.body.interest_rate},
-      ${req.body.points_charged},
-      ${req.body.loan_term},
-      ${req.body.gross_monthly_income},
-      ${req.body.property_taxes},
-      ${req.body.insurance},
-      ${req.body.water_sewer},
-      ${req.body.electricity},
-      ${req.body.gas},
-      ${req.body.garbage},
-      ${req.body.hoa_fees},
-      ${req.body.management_fees},
-      ${req.body.repairs_maintenance},
-      ${req.body.capital_expenditures},
-      ${req.body.vacancy},
-      ${req.body.monthly_income},
-      ${req.body.operating_expenses},
-      ${req.body.monthly_expenses},
-      ${req.body.cashflow},
-      ${req.body.noi},
-      ${req.body.coc_roi},
-      ${req.body.purchase_cap_rate},
-      ${req.body.total_cost_of_project},
-      ${req.body.loan_amount},
-      ${req.body.loan_fees},
-      ${req.body.monthly_mortgage_payment},
-      '${req.body.user_id}'
-    )`;
-    await database.query(sqlQuery);
-    res.status(201).json("Create rental report success");
   } catch (error) {
     console.error(error);
   }
